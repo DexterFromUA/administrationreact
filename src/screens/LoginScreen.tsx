@@ -1,11 +1,7 @@
 import React from 'react';
 import {SafeAreaView, Text, StyleSheet, Button, StatusBar} from 'react-native';
 
-interface ILoginScreen {
-  navigation: any;
-}
-
-const LoginScreen = ({navigation}: ILoginScreen) => {
+const LoginScreen = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -13,7 +9,7 @@ const LoginScreen = ({navigation}: ILoginScreen) => {
         <Text>Hello</Text>
         <Button
           title="Login with Apple ID"
-          onPress={() => navigation.navigate('Main')}
+          onPress={() => console.log('test')}
         />
       </SafeAreaView>
     </>

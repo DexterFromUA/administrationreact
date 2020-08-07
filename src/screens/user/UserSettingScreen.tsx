@@ -1,10 +1,10 @@
 import React from 'react';
 import {SafeAreaView, Text, StyleSheet} from 'react-native';
 
-const MainScreen = () => {
+const UserSettingScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>MAIN SCREEN</Text>
+      <Text>USER SETTING SCREEN</Text>
     </SafeAreaView>
   );
 };
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MainScreen;
+export default UserSettingScreen;

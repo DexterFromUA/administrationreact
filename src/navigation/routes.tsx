@@ -1,19 +1,15 @@
 import {Button, Alert} from 'react-native';
 import React from 'react';
 
-import MainScreen from '../screens/MainScreen';
 import LoginScreen from '../screens/LoginScreen';
 import AdminHomeScreen from '../screens/admin/AdminHomeScreen';
 import UserHomeScreen from '../screens/user/UserHomeScreen';
+import UserSettingScreen from '../screens/user/UserSettingScreen';
 
 const authScreens = [
   {
     name: 'Login',
     component: LoginScreen,
-  },
-  {
-    name: 'Main',
-    component: MainScreen,
     options: {
       headerBackTitleVisible: false,
       headerLeft: () => (
@@ -27,6 +23,16 @@ const userScreens = [
   {
     name: 'UserHome',
     component: UserHomeScreen,
+    options: {
+      title: 'Home',
+    },
+  },
+  {
+    name: 'UserSetting',
+    component: UserSettingScreen,
+    options: {
+      title: 'Settings',
+    },
   },
 ];
 
