@@ -1,9 +1,11 @@
 import React from 'react';
-import {SafeAreaView, Text, StyleSheet} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, StatusBar} from 'react-native';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 import {getItems} from '../../actions/actionCreators/newsCreator';
+import Loading from '../../components/Loading';
+import Card from '../../components/Card';
 
 const UserHomeScreen = (props: any) => {
   React.useEffect(() => {
@@ -11,20 +13,38 @@ const UserHomeScreen = (props: any) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (props.isLoading) {
+    return (
+      <SafeAreaView style={styles.loading}>
+        <Loading />
+      </SafeAreaView>
+    );
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>USER NEWS SCREEN</Text>
-      {props.news.map((item: any) => (
-        <Text key={item.id}>{item.title}</Text>
-      ))}
-    </SafeAreaView>
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView style={styles.container}>
+        <ScrollView>
+          {props.news.map((item: any) => (
+            <Card
+              key={item.id}
+              title={item.title}
+              description={item.description}
+            />
+          ))}
+        </ScrollView>
+      </SafeAreaView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+  },
+  loading: {
+    flex: 1,
     justifyContent: 'center',
   },
 });
