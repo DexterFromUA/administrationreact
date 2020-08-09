@@ -21,13 +21,21 @@ const UserRouter = () => {
           tabBarIcon: ({focused, color, size}) => {
             let iconName;
 
-            if (route.name === 'UserHome') {
-              iconName = focused ? 'happy' : 'happy-outline';
+            if (route.name === 'UserNews') {
+              iconName = focused ? 'reader' : 'reader-outline';
             } else if (route.name === 'UserSetting') {
               iconName = focused ? 'cog' : 'cog-outline';
+            } else if (route.name === 'UserQueue') {
+              iconName = focused ? 'clipboard' : 'clipboard-outline';
+            } else if (route.name === 'UserTickets') {
+              iconName = focused ? 'pricetags' : 'pricetags-outline';
+            } else if (route.name === 'UserParty') {
+              iconName = focused ? 'restaurant' : 'restaurant-outline';
+            } else if (route.name === 'UserMedia') {
+              iconName = focused ? 'images' : 'images-outline';
             }
 
-            return <Ionicons name={iconName} size={size + 10} color={color} />;
+            return <Ionicons name={iconName} size={size} color={color} />;
           },
         })}
         tabBarOptions={{

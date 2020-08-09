@@ -5,6 +5,10 @@ import LoginScreen from '../screens/LoginScreen';
 import AdminHomeScreen from '../screens/admin/AdminHomeScreen';
 import UserHomeScreen from '../screens/user/UserHomeScreen';
 import UserSettingScreen from '../screens/user/UserSettingScreen';
+import UserMediaScreen from '../screens/user/UserMediaScreen';
+import UserQueueScreen from '../screens/user/UserQueueScreen';
+import UserTableScreen from '../screens/user/UserTableScreen';
+import UserTicketsScreen from '../screens/user/UserTicketsScreen';
 
 const authScreens = [
   {
@@ -21,10 +25,38 @@ const authScreens = [
 
 const userScreens = [
   {
-    name: 'UserHome',
+    name: 'UserNews',
     component: UserHomeScreen,
     options: {
-      title: 'Home',
+      title: 'News',
+    },
+  },
+  {
+    name: 'UserQueue',
+    component: UserQueueScreen,
+    options: {
+      title: 'Queue',
+    },
+  },
+  {
+    name: 'UserTickets',
+    component: UserTicketsScreen,
+    options: {
+      title: 'Tickets',
+    },
+  },
+  {
+    name: 'UserParty',
+    component: UserTableScreen,
+    options: {
+      title: 'Table',
+    },
+  },
+  {
+    name: 'UserMedia',
+    component: UserMediaScreen,
+    options: {
+      title: 'Media',
     },
   },
   {
