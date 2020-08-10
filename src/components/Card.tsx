@@ -5,13 +5,14 @@ type ICard = {
   title: string;
   description?: string;
   onClick?: () => void;
+  image?: boolean;
 };
 
-const Card = ({title, description, onClick}: ICard) => {
+const Card = ({title, description, onClick, image}: ICard) => {
   return (
     <TouchableOpacity onPress={onClick}>
       <View style={styles.container}>
-        <View style={styles.image}></View>
+        {image && <Text style={styles.image}>image</Text>}
         <View style={styles.information}>
           <Text>{title}</Text>
           <Text>{description}</Text>
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     shadowRadius: 9,
     backgroundColor: 'white',
     elevation: 4,
-    height: 200,
+    resizeMode: 'contain',
   },
   image: {
     flex: 1,

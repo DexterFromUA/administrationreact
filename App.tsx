@@ -6,7 +6,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 
 import store from './src/utils/store';
-import LoadingScreen from './src/screens/LoadingScreen';
+import Loading from './src/components/Loading';
 import ErrorScreen from './src/screens/ErrorScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import AdminRouter from './src/navigation/AdminRouter';
@@ -23,7 +23,7 @@ const App = () => {
   const [isError, setError] = React.useState(false);
 
   if (isLoading) {
-    return <LoadingScreen />;
+    return <Loading />;
   }
 
   if (isError) {
