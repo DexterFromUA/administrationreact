@@ -2,12 +2,15 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, ScrollView, StatusBar} from 'react-native';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+// import {useNavigation} from '@react-navigation/native';
 
 import {getItems} from '../../actions/actionCreators/newsCreator';
 import Loading from '../../components/Loading';
 import Card from '../../components/Card';
 
 const UserHomeScreen = (props: any) => {
+  // const navigation = useNavigation();
+
   React.useEffect(() => {
     props.getItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,6 +34,12 @@ const UserHomeScreen = (props: any) => {
               key={item.id}
               title={item.title}
               description={item.description}
+              onClick={() =>
+                props.navigation.navigate('More', {
+                  title: item.title,
+                  full: item.full,
+                })
+              }
             />
           ))}
         </ScrollView>

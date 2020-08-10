@@ -3,7 +3,8 @@ import React from 'react';
 
 import LoginScreen from '../screens/LoginScreen';
 import AdminHomeScreen from '../screens/admin/AdminHomeScreen';
-import UserHomeScreen from '../screens/user/UserHomeScreen';
+// import UserHomeScreen from '../screens/user/UserHomeScreen';
+import UserNewsRouter from '../navigation/UserNewsRouter';
 import UserSettingScreen from '../screens/user/UserSettingScreen';
 import UserMediaScreen from '../screens/user/UserMediaScreen';
 import UserQueueScreen from '../screens/user/UserQueueScreen';
@@ -26,7 +27,8 @@ const authScreens = [
 const userScreens = [
   {
     name: 'UserNews',
-    component: UserHomeScreen,
+    // component: UserHomeScreen,
+    component: UserNewsRouter,
     options: {
       title: 'News',
     },

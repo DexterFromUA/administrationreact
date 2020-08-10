@@ -9,7 +9,7 @@ type ICard = {
 
 const Card = ({title, description, onClick}: ICard) => {
   return (
-    <TouchableOpacity onPress={() => onClick}>
+    <TouchableOpacity onPress={onClick}>
       <View style={styles.container}>
         <View style={styles.image}></View>
         <View style={styles.information}>
