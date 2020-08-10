@@ -16,6 +16,20 @@ const initialState = {
     errorNews: false,
     news: [],
   },
+  queue: {
+    queueStatus: false,
+    friendList: [
+      {
+        name: 'Dexter',
+      },
+      {
+        name: 'Kostya',
+      },
+      {
+        name: 'Artem',
+      },
+    ],
+  },
 };
 
 const store = createStore(

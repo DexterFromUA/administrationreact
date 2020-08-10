@@ -1,6 +1,7 @@
 /**
  * @format
  */
+//open "rndebugger://set-debugger-loc?host=localhost&port=8081"
 
 import {AppRegistry} from 'react-native';
 import App from './App';

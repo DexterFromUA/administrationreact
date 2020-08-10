@@ -10,7 +10,7 @@ type IIconButton = {
 const IconButton = ({icon, onClick, style}: IIconButton) => {
   return (
     <TouchableOpacity onPress={onClick}>
-      <View style={[style, styles.container]}>{icon}</View>
+      <View style={[styles.container, style]}>{icon}</View>
     </TouchableOpacity>
   );
 };
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOffset: {
       width: 0,
-      height: 5,
+      height: 10,
     },
     shadowOpacity: 0.4,
     shadowRadius: 9,

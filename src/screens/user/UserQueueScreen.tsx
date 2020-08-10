@@ -1,63 +1,43 @@
 import React from 'react';
-import {SafeAreaView, Text, StyleSheet, View, Dimensions} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
-import CardViewer from '../../components/CardViewer';
-import IconButton from '../../components/IconButton';
+import InQueueScreen from './interfaceScreens/InQueueScreen';
+import OutQueueScreen from './interfaceScreens/OutQueueScreen';
+import {addFriendToQueue} from '../../actions/queue';
 
-const UserSettingScreen = () => {
-  const fullWidth = Dimensions.get('window').width;
+type IUserQueueScreen = {
+  queueStatus: boolean;
+  friendList: Object[];
+  queueAddFriend: (id: number) => Object;
+};
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.first}>
-        <Text style={styles.info}>Here you can take a queue for a table</Text>
-        <CardViewer
-          text="@username"
-          style={{width: fullWidth - 70, alignItems: 'center', height: 44}}
-        />
-        <View style={styles.element}>
-          <CardViewer
-            text="@username"
-            style={{width: fullWidth - 145, alignItems: 'center', height: 44}}
-          />
-          <IconButton
-            icon={<Ionicons name="person-remove-outline" size={20} />}
-          />
-        </View>
-        <View style={{width: fullWidth - 40}}>
-          <IconButton icon={<Ionicons name="person-add-outline" size={20} />} />
-        </View>
-      </View>
-      <View style={styles.second}>
-        <IconButton
-          icon={<Ionicons name="arrow-forward-circle-outline" size={20} />}
-          style={{width: 100, height: 44}}
-        />
-      </View>
-    </SafeAreaView>
+const UserQueueScreen = ({
+  queueStatus,
+  queueAddFriend,
+  friendList,
+}: IUserQueueScreen) => {
+  return queueStatus ? (
+    <InQueueScreen />
+  ) : (
+    <OutQueueScreen friendList={friendList} queueAddFriend={queueAddFriend} />
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  info: {
-    paddingVertical: 40,
-    fontSize: 18,
-  },
-  element: {
-    flexDirection: 'row',
-  },
-  first: {
-    flex: 9,
-    alignItems: 'center',
-  },
-  second: {
-    flex: 1,
-  },
-});
+const mapStateToProps = (state: any) => {
+  return {
+    queueStatus: state.queue.queueStatus,
+    friendList: state.queue.friendList,
+  };
+};
 
-export default UserSettingScreen;
+const mapDispatchToProps = (dispatch: any) => {
+  return bindActionCreators(
+    {
+      queueAddFriend: addFriendToQueue,
+    },
+    dispatch,
+  );
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserQueueScreen);
