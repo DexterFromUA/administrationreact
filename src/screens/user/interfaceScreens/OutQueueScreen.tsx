@@ -50,15 +50,21 @@ const OutQueueScreen = ({
                 }}
               />
               <IconButton
-                icon={<Ionicons name="person-remove-outline" size={20} />}
+                icon={<Ionicons name="sad-outline" size={20} />}
                 onClick={() => queueRemoveFriend(friend.id)}
+                // eslint-disable-next-line react-native/no-inline-styles
+                style={{
+                  backgroundColor: 'red',
+                  borderWidth: 0,
+                  height: 44,
+                }}
               />
             </View>
           ))}
         {selectedFriends.length < 5 && (
           <View style={{width: fullWidth - 40}}>
             <IconButton
-              icon={<Ionicons name="person-add-outline" size={20} />}
+              icon={<Ionicons name="people-outline" size={20} />}
               onClick={() => setVisible(true)}
             />
           </View>
@@ -66,10 +72,26 @@ const OutQueueScreen = ({
       </View>
       <View style={styles.second}>
         <IconButton
-          icon={<Ionicons name="arrow-forward-circle-outline" size={20} />}
+          icon={
+            <View
+              // eslint-disable-next-line react-native/no-inline-styles
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'center',
+              }}>
+              <Ionicons name="wine-outline" size={20} />
+              <Ionicons name="pizza-outline" size={20} />
+              <Ionicons name="musical-note-outline" size={20} />
+              <Ionicons name="rocket-outline" size={20} />
+              <Ionicons name="ice-cream-outline" size={20} />
+              <Ionicons name="flame-outline" size={20} />
+              <Ionicons name="flash-outline" size={20} />
+            </View>
+          }
           // eslint-disable-next-line react-native/no-inline-styles
           style={{
-            width: 100,
+            width: fullWidth - 70,
             height: 44,
             backgroundColor: 'green',
             borderWidth: 0,
@@ -82,7 +104,7 @@ const OutQueueScreen = ({
         list={leftFriends}
         selectFromList={queueAddFriend}
         listWithButton
-        icon={<Ionicons name="person-add-outline" size={20} />}
+        icon={<Ionicons name="magnet-outline" size={20} />}
       />
     </SafeAreaView>
   );

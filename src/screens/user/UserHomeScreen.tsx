@@ -2,20 +2,11 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, ScrollView, StatusBar} from 'react-native';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-// import {useNavigation} from '@react-navigation/native';
 
-import {getItems} from '../../actions/actionCreators/newsCreator';
 import Loading from '../../components/Loading';
 import Card from '../../components/Card';
 
 const UserHomeScreen = (props: any) => {
-  // const navigation = useNavigation();
-
-  React.useEffect(() => {
-    props.getItems();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   if (props.isLoading) {
     return (
       <SafeAreaView style={styles.loading}>
@@ -67,12 +58,7 @@ const mapStateToProps = (state: any) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators(
-    {
-      getItems,
-    },
-    dispatch,
-  );
+  return bindActionCreators({}, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHomeScreen);

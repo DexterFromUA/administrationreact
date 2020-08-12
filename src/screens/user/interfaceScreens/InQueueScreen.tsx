@@ -34,10 +34,10 @@ const InQueueScreen = ({friendsInQueue}: IInQueueScreen) => {
       </View>
       <View style={styles.second}>
         <IconButton
-          icon={<Ionicons name="arrow-back-circle-outline" size={20} />}
+          icon={<Ionicons name="skull-outline" size={20} />}
           // eslint-disable-next-line react-native/no-inline-styles
           style={{
-            width: 100,
+            width: 150,
             height: 44,
             backgroundColor: 'red',
             borderWidth: 0,
