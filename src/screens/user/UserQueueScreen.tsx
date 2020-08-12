@@ -12,6 +12,7 @@ type IUserQueueScreen = {
   queueAddFriend: (id: number) => void;
   queueRemoveFriend: (id: number) => void;
   selectedFriends: Object[];
+  friendsInQueue: Object[];
 };
 
 const UserQueueScreen = ({
@@ -20,9 +21,10 @@ const UserQueueScreen = ({
   friendList,
   queueRemoveFriend,
   selectedFriends,
+  friendsInQueue,
 }: IUserQueueScreen) => {
   return queueStatus ? (
-    <InQueueScreen />
+    <InQueueScreen friendsInQueue={friendsInQueue} />
   ) : (
     <OutQueueScreen
       friendList={friendList}
@@ -38,6 +40,7 @@ const mapStateToProps = (state: any) => {
     queueStatus: state.queue.queueStatus,
     friendList: state.queue.friendList,
     selectedFriends: state.queue.selectedFriends,
+    friendsInQueue: state.queue.friendsInQueue,
   };
 };
 

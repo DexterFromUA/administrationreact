@@ -21,11 +21,17 @@ const OutQueueScreen = ({
 }: IOutQueueScreen) => {
   const fullWidth = Dimensions.get('window').width;
   const [modalVisible, setVisible] = React.useState(false);
+  const leftFriends = friendList.filter(
+    (item) => !selectedFriends.some((item2) => item.id === item2.id),
+  );
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.first}>
         <Text style={styles.info}>Here you can take a queue for a table</Text>
+        <Text style={styles.description}>
+          Table size depends on the number of people!
+        </Text>
         <CardViewer
           text="@username"
           // eslint-disable-next-line react-native/no-inline-styles
@@ -73,7 +79,7 @@ const OutQueueScreen = ({
       <ModalComponent
         visible={modalVisible}
         setVisible={() => setVisible(!modalVisible)}
-        list={friendList}
+        list={leftFriends}
         selectFromList={queueAddFriend}
         listWithButton
         icon={<Ionicons name="person-add-outline" size={20} />}
@@ -88,7 +94,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   info: {
-    paddingVertical: 50,
+    paddingTop: 50,
     fontSize: 18,
   },
   element: {
@@ -100,6 +106,10 @@ const styles = StyleSheet.create({
   },
   second: {
     flex: 1,
+  },
+  description: {
+    fontSize: 12,
+    paddingVertical: 30,
   },
 });
 

@@ -17,40 +17,8 @@ const initialState = {
     news: [],
   },
   queue: {
-    queueStatus: false,
+    queueStatus: true,
     friendList: [
-      {
-        id: 1,
-        name: 'Bagay',
-      },
-      {
-        id: 2,
-        name: 'Kostya',
-      },
-      {
-        id: 3,
-        name: 'Artem',
-      },
-      {
-        id: 4,
-        name: 'Safik',
-      },
-      {
-        id: 1,
-        name: 'Bagay',
-      },
-      {
-        id: 2,
-        name: 'Kostya',
-      },
-      {
-        id: 3,
-        name: 'Artem',
-      },
-      {
-        id: 4,
-        name: 'Safik',
-      },
       {
         id: 1,
         name: 'Bagay',
@@ -69,6 +37,24 @@ const initialState = {
       },
     ],
     selectedFriends: [],
+    friendsInQueue: [
+      {
+        id: 1,
+        name: 'Bagay',
+      },
+      {
+        id: 2,
+        name: 'Kostya',
+      },
+      {
+        id: 3,
+        name: 'Artem',
+      },
+      {
+        id: 4,
+        name: 'Safik',
+      },
+    ],
   },
 };
 

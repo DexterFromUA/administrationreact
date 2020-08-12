@@ -14,7 +14,7 @@ import {
 type IModalComponent = {
   visible: boolean;
   setVisible: () => void;
-  list?: any[];
+  list?: Object[] | undefined;
   selectFromList: (id: number) => void;
   listWithButton?: boolean;
   style?: Object;
@@ -70,6 +70,11 @@ const ModalComponent = ({
                   )}
                 </View>
               ))}
+            {!list.length && (
+              <View style={styles.empty}>
+                <Text>Have no more :(</Text>
+              </View>
+            )}
           </ScrollView>
         </View>
       </Modal>
@@ -133,6 +138,11 @@ const styles = StyleSheet.create({
   scrollView: {
     alignSelf: 'center',
     marginBottom: 20,
+  },
+  empty: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
