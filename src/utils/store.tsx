@@ -36,6 +36,18 @@ const initialState = {
         id: 4,
         name: 'Safik',
       },
+      {
+        id: 5,
+        name: 'Akter',
+      },
+      {
+        id: 6,
+        name: 'Bereza',
+      },
+      {
+        id: 7,
+        name: 'Kirill',
+      },
     ],
     selectedFriends: [],
     friendsInQueue: [
