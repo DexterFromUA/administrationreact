@@ -1,9 +1,15 @@
 const INITIAL_STATE = {
   queueStatus: false,
   friendList: [],
+  selectedFriends: [],
 };
 
-export default (state = INITIAL_STATE, action: any) => {
+type IAction = {
+  type: string;
+  payload: any;
+};
+
+export default (state = INITIAL_STATE, action: IAction) => {
   switch (action.type) {
     case 'CHANGE_QUEUE_STATUS':
       return Object.assign({}, state, {
@@ -12,7 +18,17 @@ export default (state = INITIAL_STATE, action: any) => {
 
     case 'ADD_FRIEND_TO_QUEUE':
       return Object.assign({}, state, {
-        friendList: [...state.friendList, action.payload],
+        selectedFriends: [
+          ...state.selectedFriends,
+          state.friendList.find(({id}) => id === action.payload),
+        ],
+      });
+
+    case 'REMOVE_FRIEND_FROM_QUEUE':
+      return Object.assign({}, state, {
+        selectedFriends: state.selectedFriends.filter(
+          ({id}) => id !== action.payload,
+        ),
       });
 
     default:

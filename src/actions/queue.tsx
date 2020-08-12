@@ -4,3 +4,10 @@ export const addFriendToQueue = (id: number) => {
     payload: id,
   };
 };
+
+export const removeFriendFromQueue = (id: number) => {
+  return {
+    type: 'REMOVE_FRIEND_FROM_QUEUE',
+    payload: id,
+  };
+};

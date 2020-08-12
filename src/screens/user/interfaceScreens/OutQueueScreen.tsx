@@ -4,14 +4,23 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import CardViewer from '../../../components/CardViewer';
 import IconButton from '../../../components/IconButton';
+import ModalComponent from '../../../components/Modal';
 
 type IOutQueueScreen = {
-  queueAddFriend: (id: number) => Object;
+  queueAddFriend: (id: number) => void;
   friendList: Object[];
+  queueRemoveFriend: (id: number) => void;
+  selectedFriends: Object[];
 };
 
-const OutQueueScreen = ({queueAddFriend, friendList}: IOutQueueScreen) => {
+const OutQueueScreen = ({
+  queueAddFriend,
+  friendList,
+  queueRemoveFriend,
+  selectedFriends,
+}: IOutQueueScreen) => {
   const fullWidth = Dimensions.get('window').width;
+  const [modalVisible, setVisible] = React.useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -22,8 +31,8 @@ const OutQueueScreen = ({queueAddFriend, friendList}: IOutQueueScreen) => {
           // eslint-disable-next-line react-native/no-inline-styles
           style={{width: fullWidth - 70, alignItems: 'center', height: 44}}
         />
-        {friendList &&
-          friendList.map((friend, idx) => (
+        {selectedFriends &&
+          selectedFriends.map((friend, idx) => (
             <View style={styles.element} key={idx}>
               <CardViewer
                 text={friend.name}
@@ -36,14 +45,15 @@ const OutQueueScreen = ({queueAddFriend, friendList}: IOutQueueScreen) => {
               />
               <IconButton
                 icon={<Ionicons name="person-remove-outline" size={20} />}
+                onClick={() => queueRemoveFriend(friend.id)}
               />
             </View>
           ))}
-        {friendList.length < 5 && (
+        {selectedFriends.length < 5 && (
           <View style={{width: fullWidth - 40}}>
             <IconButton
               icon={<Ionicons name="person-add-outline" size={20} />}
-              onClick={() => queueAddFriend(1)}
+              onClick={() => setVisible(true)}
             />
           </View>
         )}
@@ -60,6 +70,14 @@ const OutQueueScreen = ({queueAddFriend, friendList}: IOutQueueScreen) => {
           }}
         />
       </View>
+      <ModalComponent
+        visible={modalVisible}
+        setVisible={() => setVisible(!modalVisible)}
+        list={friendList}
+        selectFromList={queueAddFriend}
+        listWithButton
+        icon={<Ionicons name="person-add-outline" size={20} />}
+      />
     </SafeAreaView>
   );
 };

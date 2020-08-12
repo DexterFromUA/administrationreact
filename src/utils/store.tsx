@@ -20,15 +20,55 @@ const initialState = {
     queueStatus: false,
     friendList: [
       {
-        name: 'Dexter',
+        id: 1,
+        name: 'Bagay',
       },
       {
+        id: 2,
         name: 'Kostya',
       },
       {
+        id: 3,
         name: 'Artem',
       },
+      {
+        id: 4,
+        name: 'Safik',
+      },
+      {
+        id: 1,
+        name: 'Bagay',
+      },
+      {
+        id: 2,
+        name: 'Kostya',
+      },
+      {
+        id: 3,
+        name: 'Artem',
+      },
+      {
+        id: 4,
+        name: 'Safik',
+      },
+      {
+        id: 1,
+        name: 'Bagay',
+      },
+      {
+        id: 2,
+        name: 'Kostya',
+      },
+      {
+        id: 3,
+        name: 'Artem',
+      },
+      {
+        id: 4,
+        name: 'Safik',
+      },
     ],
+    selectedFriends: [],
   },
 };
 
