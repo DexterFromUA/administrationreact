@@ -5,7 +5,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import rootReducer from '../reducers';
 
 const initialState = {
-  invited: false,
+  invited: true,
   // user: {
   //   name: 'test',
   //   role: 'user',
