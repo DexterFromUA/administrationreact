@@ -1,5 +1,5 @@
 import React from 'react';
-import {bindActionCreators} from 'redux';
+import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
 import InQueueScreen from './interfaceScreens/InQueueScreen';
@@ -9,20 +9,20 @@ import {addFriendToQueue, removeFriendFromQueue} from '../../actions/queue';
 type IUserQueueScreen = {
   queueStatus: boolean;
   friendList: Object[];
-  queueAddFriend: (id: number) => void;
-  queueRemoveFriend: (id: number) => void;
+  queueAddFriend: (id: number) => Object;
+  queueRemoveFriend: (id: number) => Object;
   selectedFriends: Object[];
   friendsInQueue: Object[];
 };
 
-const UserQueueScreen = ({
+const UserQueueScreen: React.FC<IUserQueueScreen> = ({
   queueStatus,
   queueAddFriend,
   friendList,
   queueRemoveFriend,
   selectedFriends,
   friendsInQueue,
-}: IUserQueueScreen) => {
+}) => {
   return queueStatus ? (
     <InQueueScreen friendsInQueue={friendsInQueue} />
   ) : (
@@ -44,7 +44,7 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(
     {
       queueAddFriend: addFriendToQueue,

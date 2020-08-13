@@ -1,22 +1,38 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 
 type ICard = {
-  title: string;
+  title?: string;
   description?: string;
   onClick?: () => void;
   image?: boolean;
+  style?: Object;
+  children?: React.ReactNode;
 };
 
-const Card = ({title, description, onClick, image}: ICard) => {
+const Card = ({title, description, onClick, image, style, children}: ICard) => {
   return (
     <TouchableOpacity onPress={onClick}>
-      <View style={styles.container}>
+      <View
+        style={[
+          {width: Dimensions.get('window').width - 30},
+          styles.container,
+          style,
+        ]}>
         {image && <Text style={styles.image}>image</Text>}
-        <View style={styles.information}>
-          <Text>{title}</Text>
-          <Text>{description}</Text>
-        </View>
+        {!children && (
+          <View style={styles.information}>
+            <Text>{title}</Text>
+            <Text>{description}</Text>
+          </View>
+        )}
+        {children}
       </View>
     </TouchableOpacity>
   );
@@ -28,17 +44,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderWidth: 1,
     borderRadius: 10,
-    borderStartColor: 'white',
-    borderEndColor: 'white',
-    borderBottomColor: 'white',
-    borderTopColor: 'white',
+    borderColor: 'white',
     padding: 10,
     marginHorizontal: 15,
     marginVertical: 10,
     shadowColor: 'black',
     shadowOffset: {
       width: 0,
-      height: 5,
+      height: 10,
     },
     shadowOpacity: 0.4,
     shadowRadius: 9,

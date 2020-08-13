@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {bindActionCreators} from 'redux';
+import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
 import {userScreens} from './routes';
@@ -14,12 +14,6 @@ type IUserRouter = {
   invited: boolean;
   getNews: () => Object;
 };
-
-interface IScreen {
-  name: string;
-  component: any;
-  options?: Object;
-}
 
 const UserRouter = ({invited, getNews}: IUserRouter) => {
   React.useEffect(() => {
@@ -51,14 +45,14 @@ const UserRouter = ({invited, getNews}: IUserRouter) => {
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'tomato',
+          activeTintColor: 'violet',
           inactiveTintColor: 'gray',
         }}>
         {userScreens
           .filter((item) =>
             invited ? item.name !== 'UserQueue' : item.name !== 'UserParty',
           )
-          .map(({name, component, options}: IScreen, idx) => (
+          .map(({name, component, options}, idx) => (
             <Tab.Screen
               key={idx}
               name={name}
@@ -71,13 +65,13 @@ const UserRouter = ({invited, getNews}: IUserRouter) => {
   );
 };
 
-const mapStateToProps = (state: Object) => {
+const mapStateToProps = (state: Record<string, any>) => {
   return {
     invited: state.invited,
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(
     {
       getNews: getItems,

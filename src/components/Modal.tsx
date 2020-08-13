@@ -15,10 +15,12 @@ type IModalComponent = {
   visible: boolean;
   setVisible: () => void;
   list?: Object[] | undefined;
-  selectFromList: (id: number) => void;
+  selectFromList?: (id: number) => void;
   listWithButton?: boolean;
   style?: Object;
   icon?: any;
+  children?: React.ReactNode;
+  childrenStyle?: Object;
 };
 
 const ModalComponent = ({
@@ -29,10 +31,14 @@ const ModalComponent = ({
   listWithButton,
   style,
   icon,
+  children,
+  childrenStyle,
 }: IModalComponent) => {
   const closeHandle = (id: number) => {
-    selectFromList(id);
-    setVisible();
+    if (selectFromList) {
+      selectFromList(id);
+      setVisible();
+    }
   };
 
   return (
@@ -48,34 +54,39 @@ const ModalComponent = ({
           <View style={styles.doneButton}>
             <Button title="Done" onPress={setVisible} />
           </View>
-          <ScrollView style={styles.scrollView}>
-            {list &&
-              list.map((item, idx) => (
-                <View key={idx} style={listWithButton && styles.listWithButton}>
+          {!children && (
+            <ScrollView style={styles.scrollView}>
+              {list &&
+                list.map((item, idx) => (
                   <View
-                    style={[
-                      styles.list,
-                      {
-                        width:
-                          Dimensions.get('window').width -
-                          (listWithButton ? 150 : 100),
-                      },
-                    ]}>
-                    <Text style={styles.listText}>{item.name}</Text>
+                    key={idx}
+                    style={listWithButton && styles.listWithButton}>
+                    <View
+                      style={[
+                        styles.list,
+                        {
+                          width:
+                            Dimensions.get('window').width -
+                            (listWithButton ? 150 : 100),
+                        },
+                      ]}>
+                      <Text style={styles.listText}>{item.name}</Text>
+                    </View>
+                    {listWithButton && (
+                      <TouchableOpacity onPress={() => closeHandle(item.id)}>
+                        <View style={[styles.button, style]}>{icon}</View>
+                      </TouchableOpacity>
+                    )}
                   </View>
-                  {listWithButton && (
-                    <TouchableOpacity onPress={() => closeHandle(item.id)}>
-                      <View style={[styles.button, style]}>{icon}</View>
-                    </TouchableOpacity>
-                  )}
+                ))}
+              {list && !list.length && (
+                <View style={styles.empty}>
+                  <Text>Have no more :(</Text>
                 </View>
-              ))}
-            {!list.length && (
-              <View style={styles.empty}>
-                <Text>Have no more :(</Text>
-              </View>
-            )}
-          </ScrollView>
+              )}
+            </ScrollView>
+          )}
+          {children && <View style={childrenStyle}>{children}</View>}
         </View>
       </Modal>
     </>
@@ -86,7 +97,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    paddingTop: 30,
+    padding: 10,
   },
   listWithButton: {
     flexDirection: 'row',
