@@ -7,8 +7,8 @@ const UserSettingScreen = () => {
   const active = true;
   return (
     <SafeAreaView style={styles.container}>
-      {active && <Ticket active />}
-      <View style={styles.history}>
+      <View style={styles.active}>{active && <Ticket active />}</View>
+      <View style={styles.expired}>
         <ScrollView>
           <Ticket />
         </ScrollView>
@@ -22,8 +22,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  history: {
-    flex: 3,
+  active: {
+    flex: 1,
+  },
+  expired: {
+    flex: 2,
   },
 });
 

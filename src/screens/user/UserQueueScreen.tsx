@@ -35,7 +35,7 @@ const UserQueueScreen: React.FC<IUserQueueScreen> = ({
   );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: Record<string, any>) => {
   return {
     queueStatus: state.queue.queueStatus,
     friendList: state.queue.friendList,

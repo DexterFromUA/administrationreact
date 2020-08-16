@@ -41,7 +41,7 @@ const InQueueScreen = ({friendsInQueue}: IInQueueScreen) => {
             height: 44,
             backgroundColor: 'red',
             borderWidth: 0,
-          }}
+          }} //TODO: add alert
         />
       </View>
     </SafeAreaView>

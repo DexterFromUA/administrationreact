@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
     shadowRadius: 9,
     backgroundColor: 'white',
     elevation: 4,
-    resizeMode: 'contain',
   },
   image: {
     flex: 1,
