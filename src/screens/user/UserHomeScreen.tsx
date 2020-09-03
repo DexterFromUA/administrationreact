@@ -28,7 +28,7 @@ const UserHomeScreen = (props: any) => {
               onClick={() =>
                 props.navigation.navigate('More', {
                   title: item.title,
-                  full: item.full,
+                  full: item.text,
                 })
               }
             />

@@ -5,7 +5,11 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import rootReducer from '../reducers';
 
 const initialState = {
-  invited: true,
+  invited: false,
+  user: {
+    username: '@username',
+    token: 'access token',
+  },
   news: {
     loadingNews: true,
     errorNews: false,

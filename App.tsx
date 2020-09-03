@@ -17,7 +17,7 @@ const App = () => {
     name: 'test',
     role: 'user',
     token: '1232134233tgfg3452rfeqr23542',
-    isAuth: true,
+    isAuth: false,
   });
   const [isLoading, setLoading] = React.useState(false);
   const [isError, setError] = React.useState(false);

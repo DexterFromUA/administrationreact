@@ -1,19 +1,17 @@
 import {loadingNews, errorNews, getNews} from '../news';
+import {getServerAddr} from '../../const';
 
 export const getItems = () => {
   return (dispatch: any) => {
     dispatch(loadingNews(true));
+    const url = getServerAddr();
 
-    fetch('https://5f2f427b6b05e900163bca23.mockapi.io/News', {
-      method: 'get',
-    })
+    fetch(url + '/news')
+      .then((res) => res.json())
       .then((res) => {
-        return res.json();
+        dispatch(getNews(res.rows));
       })
-      .then((res) => {
-        dispatch(getNews(res));
-        dispatch(loadingNews(false));
-      })
-      .catch((e) => console.log(e));
+      .catch((e) => console.log('news action error: ', e))
+      .finally(() => dispatch(loadingNews(false)));
   };
 };
