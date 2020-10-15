@@ -1,5 +1,5 @@
 export const getServerAddr = () => {
-  const host = 'http://192.168.1.3';
+  const host = 'http://192.168.1.6';
   const port = 8080;
 
   return host + ':' + port;

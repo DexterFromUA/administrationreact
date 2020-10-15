@@ -1,32 +1,39 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, ScrollView, StatusBar} from 'react-native';
-import {bindActionCreators} from 'redux';
+import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
+import {UserHomeScreenInterface} from '../../constants/interfaces/UserHomeScreen';
+import {getNewsAction} from '../../redux/actions/news';
 import Loading from '../../components/Loading';
 import Card from '../../components/Card';
 
-const UserHomeScreen = (props: any) => {
-  if (props.isLoading) {
-    return (
-      <SafeAreaView style={styles.loading}>
-        <Loading />
-      </SafeAreaView>
-    );
-  }
+const UserHomeScreen = ({
+  navigation,
+  news,
+  loading,
+  getNews,
+}: UserHomeScreenInterface) => {
+  React.useEffect(() => {
+    getNews();
+  }, [getNews]);
 
-  return (
+  return loading ? (
+    <SafeAreaView style={styles.loading}>
+      <Loading />
+    </SafeAreaView>
+  ) : (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
         <ScrollView>
-          {props.news.map((item: any) => (
+          {news.map((item: any) => (
             <Card
               key={item.id}
               title={item.title}
               description={item.description}
               onClick={() =>
-                props.navigation.navigate('More', {
+                navigation.navigate('More', {
                   title: item.title,
                   full: item.text,
                 })
@@ -49,16 +56,20 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: Record<string, any>) => {
   return {
-    news: state.news.news,
-    isLoading: state.news.loadingNews,
-    isError: state.news.errorNews,
+    news: state.news.data,
+    loading: state.news.loading,
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return bindActionCreators(
+    {
+      getNews: getNewsAction,
+    },
+    dispatch,
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHomeScreen);

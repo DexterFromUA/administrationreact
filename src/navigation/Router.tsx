@@ -2,30 +2,20 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {bindActionCreators, Dispatch} from 'redux';
-import {connect} from 'react-redux';
 
 import {userScreens} from './routes';
-import {getItems} from '../actions/actionCreators/newsCreator';
 
 const Tab = createBottomTabNavigator();
 
-type IUserRouter = {
-  invited: boolean;
-  getNews: () => Object;
-};
-
-const UserRouter = ({invited, getNews}: IUserRouter) => {
-  React.useEffect(() => {
-    getNews();
-  });
+const Router = () => {
+  const invited = false;
 
   return (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarIcon: ({focused, color, size}) => {
-            let iconName;
+            let iconName = '';
 
             if (route.name === 'UserNews') {
               iconName = focused ? 'reader' : 'reader-outline';
@@ -47,6 +37,8 @@ const UserRouter = ({invited, getNews}: IUserRouter) => {
         tabBarOptions={{
           activeTintColor: 'violet',
           inactiveTintColor: 'gray',
+          showLabel: true,
+          labelPosition: 'below-icon',
         }}>
         {userScreens
           .filter((item) =>
@@ -65,19 +57,4 @@ const UserRouter = ({invited, getNews}: IUserRouter) => {
   );
 };
 
-const mapStateToProps = (state: Record<string, any>) => {
-  return {
-    invited: state.invited,
-  };
-};
-
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return bindActionCreators(
-    {
-      getNews: getItems,
-    },
-    dispatch,
-  );
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserRouter);
+export default Router;
