@@ -9,19 +9,6 @@ import UserQueueScreen from '../screens/user/UserQueueScreen';
 import UserTableScreen from '../screens/user/UserTableScreen';
 import UserTicketsScreen from '../screens/user/UserTicketsScreen';
 
-const authScreens = [
-  {
-    name: 'Login',
-    component: LoginScreen,
-    options: {
-      headerBackTitleVisible: false,
-      headerLeft: () => (
-        <Button onPress={() => Alert.alert('ALERT')} title="Logout" />
-      ),
-    },
-  },
-];
-
 const userScreens = [
   {
     name: 'UserNews',
@@ -74,4 +61,4 @@ const adminScreens = [
   },
 ];
 
-export {userScreens, authScreens, adminScreens};
+export {userScreens, adminScreens};
