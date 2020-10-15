@@ -30,13 +30,13 @@ const userScreens = [
       title: 'News',
     },
   },
-  // {
-  //   name: 'UserQueue',
-  //   component: UserQueueScreen,
-  //   options: {
-  //     title: 'Queue',
-  //   },
-  // },
+  {
+    name: 'UserQueue',
+    component: UserQueueScreen,
+    options: {
+      title: 'Queue',
+    },
+  },
   {
     name: 'UserParty',
     component: UserTableScreen,

@@ -2,34 +2,30 @@ import React from 'react';
 import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
+import {IUserQueueScreen} from '../../constants/interfaces/QueueScreen';
+import {
+  addFriendToQueueAction,
+  changeQueueStatusAction,
+  removeFriendFromQueueAction,
+} from '../../redux/actions/queue';
 import InQueueScreen from './interfaceScreens/InQueueScreen';
 import OutQueueScreen from './interfaceScreens/OutQueueScreen';
-import {addFriendToQueue, removeFriendFromQueue} from '../../actions/queue';
 
-type IUserQueueScreen = {
-  queueStatus: boolean;
-  friendList: Object[];
-  queueAddFriend: (id: number) => Object;
-  queueRemoveFriend: (id: number) => Object;
-  selectedFriends: Object[];
-  friendsInQueue: Object[];
-};
-
-const UserQueueScreen: React.FC<IUserQueueScreen> = ({
+const UserQueueScreen = ({
   queueStatus,
-  queueAddFriend,
+  addFriend,
   friendList,
-  queueRemoveFriend,
+  removeFriend,
   selectedFriends,
   friendsInQueue,
-}) => {
+}: IUserQueueScreen) => {
   return queueStatus ? (
     <InQueueScreen friendsInQueue={friendsInQueue} />
   ) : (
     <OutQueueScreen
       friendList={friendList}
-      queueAddFriend={queueAddFriend}
-      queueRemoveFriend={queueRemoveFriend}
+      queueAddFriend={addFriend}
+      queueRemoveFriend={removeFriend}
       selectedFriends={selectedFriends}
     />
   );
@@ -47,8 +43,9 @@ const mapStateToProps = (state: Record<string, any>) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(
     {
-      queueAddFriend: addFriendToQueue,
-      queueRemoveFriend: removeFriendFromQueue,
+      addFriend: addFriendToQueueAction,
+      changeQueue: changeQueueStatusAction,
+      removeFriend: removeFriendFromQueueAction,
     },
     dispatch,
   );

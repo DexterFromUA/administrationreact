@@ -6,3 +6,15 @@ export interface UserHomeScreenInterface {
   loading: boolean;
   getNews: () => void;
 }
+
+export interface InformationScreenInterface {
+  route: {
+    params: {
+      title: string;
+      full: string;
+    };
+  };
+  navigation: {
+    setOptions: (options: Object) => void;
+  };
+}

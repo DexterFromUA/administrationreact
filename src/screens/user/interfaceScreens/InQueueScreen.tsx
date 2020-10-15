@@ -2,12 +2,9 @@ import React from 'react';
 import {SafeAreaView, Text, StyleSheet, View, Dimensions} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import {IInQueueScreen} from '../../../constants/interfaces/QueueScreen';
 import CardViewer from '../../../components/CardViewer';
 import IconButton from '../../../components/IconButton';
-
-type IInQueueScreen = {
-  friendsInQueue: Object[];
-};
 
 const InQueueScreen = ({friendsInQueue}: IInQueueScreen) => {
   const fullWidth = Dimensions.get('window').width;
@@ -19,15 +16,16 @@ const InQueueScreen = ({friendsInQueue}: IInQueueScreen) => {
         <Text style={styles.description}>Your line up:</Text>
         <CardViewer
           text="@you"
-          // eslint-disable-next-line react-native/no-inline-styles
           style={{width: fullWidth - 70, alignItems: 'center', height: 44}}
         />
         {friendsInQueue &&
-          friendsInQueue.map((item, idx) => (
+          friendsInQueue.map((
+            {name},
+            idx, //TODO Type check
+          ) => (
             <CardViewer
               key={idx}
-              text={'@' + item.name}
-              // eslint-disable-next-line react-native/no-inline-styles
+              text={'@' + name}
               style={{width: fullWidth - 70, alignItems: 'center', height: 44}}
             />
           ))}
@@ -35,7 +33,6 @@ const InQueueScreen = ({friendsInQueue}: IInQueueScreen) => {
       <View style={styles.second}>
         <IconButton
           icon={<Ionicons name="skull-outline" size={20} />}
-          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             width: 150,
             height: 44,

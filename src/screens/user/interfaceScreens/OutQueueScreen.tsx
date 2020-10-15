@@ -2,16 +2,10 @@ import React from 'react';
 import {SafeAreaView, Text, StyleSheet, View, Dimensions} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import {IOutQueueScreen} from '../../../constants/interfaces/QueueScreen';
 import CardViewer from '../../../components/CardViewer';
 import IconButton from '../../../components/IconButton';
 import ModalComponent from '../../../components/Modal';
-
-type IOutQueueScreen = {
-  queueAddFriend: (id: number) => void;
-  friendList: Object[];
-  queueRemoveFriend: (id: number) => void;
-  selectedFriends: Object[];
-};
 
 const OutQueueScreen = ({
   queueAddFriend,
@@ -22,7 +16,7 @@ const OutQueueScreen = ({
   const fullWidth = Dimensions.get('window').width;
   const [modalVisible, setVisible] = React.useState(false);
   const leftFriends = friendList.filter(
-    (item) => !selectedFriends.some((item2) => item.id === item2.id),
+    (item) => !selectedFriends.some((item2) => item.id === item2.id), //TODO Type check
   );
 
   return (
@@ -34,15 +28,16 @@ const OutQueueScreen = ({
         </Text>
         <CardViewer
           text="@username"
-          // eslint-disable-next-line react-native/no-inline-styles
           style={{width: fullWidth - 70, alignItems: 'center', height: 44}}
         />
         {selectedFriends &&
-          selectedFriends.map((friend, idx) => (
+          selectedFriends.map((
+            {name, id},
+            idx, //TODO Type check
+          ) => (
             <View style={styles.element} key={idx}>
               <CardViewer
-                text={friend.name}
-                // eslint-disable-next-line react-native/no-inline-styles
+                text={name}
                 style={{
                   width: fullWidth - 145,
                   alignItems: 'center',
@@ -51,8 +46,7 @@ const OutQueueScreen = ({
               />
               <IconButton
                 icon={<Ionicons name="sad-outline" size={20} />}
-                onClick={() => queueRemoveFriend(friend.id)}
-                // eslint-disable-next-line react-native/no-inline-styles
+                onClick={() => queueRemoveFriend(id)}
                 style={{
                   backgroundColor: 'red',
                   borderWidth: 0,
@@ -74,7 +68,6 @@ const OutQueueScreen = ({
         <IconButton
           icon={
             <View
-              // eslint-disable-next-line react-native/no-inline-styles
               style={{
                 flex: 1,
                 flexDirection: 'row',
@@ -89,7 +82,6 @@ const OutQueueScreen = ({
               <Ionicons name="flash-outline" size={20} />
             </View>
           }
-          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             width: fullWidth - 70,
             height: 44,

@@ -1,14 +1,16 @@
 import React from 'react';
 import {ScrollView, View, Text, StyleSheet} from 'react-native';
 
-const InformationScreen = (props: any) => {
-  const {title, full} = props.route.params;
+import {InformationScreenInterface} from '../../../constants/interfaces/UserHomeScreen';
+
+const InformationScreen = ({route, navigation}: InformationScreenInterface) => {
+  const {title, full} = route.params;
 
   React.useEffect(() => {
-    props.navigation.setOptions({
+    navigation.setOptions({
       title: title,
     });
-  }, [props.navigation, title]);
+  }, [navigation, title]);
 
   return (
     <ScrollView>
