@@ -2,9 +2,9 @@ import React from 'react';
 import {SafeAreaView, Text, StyleSheet, View, Dimensions} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {IInQueueScreen} from '../../../constants/interfaces/QueueScreen';
-import CardViewer from '../../../components/CardViewer';
-import IconButton from '../../../components/IconButton';
+import {IInQueueScreen} from '../../constants/interfaces/QueueScreen';
+import CardViewer from '../../components/ui/CardViewer';
+import IconButton from '../../components/ui/IconButton';
 
 const InQueueScreen = ({friendsInQueue}: IInQueueScreen) => {
   const fullWidth = Dimensions.get('window').width;

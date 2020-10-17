@@ -8,10 +8,10 @@ import {
   changeQueueStatusAction,
   removeFriendFromQueueAction,
 } from '../../redux/actions/queue';
-import InQueueScreen from './interfaceScreens/InQueueScreen';
-import OutQueueScreen from './interfaceScreens/OutQueueScreen';
+import InQueueScreen from './InQueueScreen';
+import OutQueueScreen from './OutQueueScreen';
 
-const UserQueueScreen = ({
+const QueueScreen = ({
   queueStatus,
   addFriend,
   friendList,
@@ -51,4 +51,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserQueueScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(QueueScreen);

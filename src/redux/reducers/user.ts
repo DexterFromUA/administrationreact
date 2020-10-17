@@ -2,17 +2,14 @@ import {createReducer, AnyAction, PayloadAction} from '@reduxjs/toolkit';
 
 import {LOGIN, LOGIN_WITH_CALLBACK} from '../../constants/actions';
 
-interface IUser {
-  tempUri: string;
-}
-
-const userReducer = createReducer({} as IUser, (builder) => {
+const userReducer = createReducer({} as Record<string, any>, (builder) => {
   builder
     .addMatcher(
       (action: AnyAction): action is PayloadAction<{tempUri: string}> =>
         action.type.endsWith(LOGIN + '/fulfilled'),
       (state, action) => {
-        [...state.tempUri, action.payload];
+        state.tempUri = action.payload;
+        state.loading = false;
       },
     )
     .addMatcher(

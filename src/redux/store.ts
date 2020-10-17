@@ -5,6 +5,7 @@ import rootReducer from './reducers';
 
 const initialState = {
   user: {
+    loading: true,
     tempUri: '',
     username: '',
     id: '',

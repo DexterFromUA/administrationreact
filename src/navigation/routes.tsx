@@ -1,53 +1,50 @@
-import {Button, Alert} from 'react-native';
-
-import LoginScreen from '../screens/LoginScreen';
 import AdminHomeScreen from '../screens/admin/AdminHomeScreen';
-import UserNewsRouter from '../navigation/UserNewsRouter';
-import UserSettingScreen from '../screens/user/UserSettingScreen';
-import UserMediaScreen from '../screens/user/UserMediaScreen';
-import UserQueueScreen from '../screens/user/UserQueueScreen';
-import UserTableScreen from '../screens/user/UserTableScreen';
-import UserTicketsScreen from '../screens/user/UserTicketsScreen';
+import NewsRouter from './NewsRouter';
+import SettingScreen from '../screens/SettingScreen';
+import MediaScreen from '../screens/MediaScreen';
+import QueueScreen from '../screens/QueueScreen';
+import TableScreen from '../screens/TableScreen';
+import TicketScreen from '../screens/TicketScreen';
 
 const userScreens = [
   {
     name: 'UserNews',
-    component: UserNewsRouter,
+    component: NewsRouter,
     options: {
       title: 'News',
     },
   },
   {
     name: 'UserQueue',
-    component: UserQueueScreen,
+    component: QueueScreen,
     options: {
       title: 'Queue',
     },
   },
   {
     name: 'UserParty',
-    component: UserTableScreen,
+    component: TableScreen,
     options: {
       title: 'Table',
     },
   },
   {
     name: 'UserTickets',
-    component: UserTicketsScreen,
+    component: TicketScreen,
     options: {
       title: 'Tickets',
     },
   },
   {
     name: 'UserMedia',
-    component: UserMediaScreen,
+    component: MediaScreen,
     options: {
       title: 'Media',
     },
   },
   {
     name: 'UserSetting',
-    component: UserSettingScreen,
+    component: SettingScreen,
     options: {
       title: 'Settings',
     },

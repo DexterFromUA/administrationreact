@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, Text, StyleSheet} from 'react-native';
 
-const UserSettingScreen = () => {
+const TableScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text>USER TABLE SCREEN</Text>
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserSettingScreen;
+export default TableScreen;

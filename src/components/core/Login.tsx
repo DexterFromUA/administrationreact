@@ -8,24 +8,27 @@ import {
 } from 'react-native';
 import WebView from 'react-native-webview';
 
-interface ILoginScreen {
-  tempUri: string;
-  loginUser: () => void;
-  loginUserCallback: (url: string) => void;
-}
+import Loading from '../ui/Loading';
+import {ILoginComponent} from '../../constants/interfaces/LoginComponent';
 
-const LoginScreen = ({tempUri, loginUser, loginUserCallback}: ILoginScreen) => {
+const Login = ({
+  tempUri,
+  loginUser,
+  loginUserCallback,
+  loading,
+}: ILoginComponent) => {
   const {width, height} = Dimensions.get('window');
 
   React.useEffect(() => {
     loginUser();
-  });
+  }, [loginUser]);
 
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="light-content" />
       <SafeAreaView style={styles.container}>
-        {tempUri && (
+        {loading && <Loading />}
+        {!loading && (
           <View>
             <WebView
               source={{uri: tempUri}}
@@ -50,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default Login;

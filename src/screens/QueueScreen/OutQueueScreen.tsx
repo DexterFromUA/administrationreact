@@ -2,10 +2,10 @@ import React from 'react';
 import {SafeAreaView, Text, StyleSheet, View, Dimensions} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {IOutQueueScreen} from '../../../constants/interfaces/QueueScreen';
-import CardViewer from '../../../components/CardViewer';
-import IconButton from '../../../components/IconButton';
-import ModalComponent from '../../../components/Modal';
+import {IOutQueueScreen} from '../../constants/interfaces/QueueScreen';
+import CardViewer from '../../components/ui/CardViewer';
+import IconButton from '../../components/ui/IconButton';
+import ModalComponent from '../../components/core/Modal';
 
 const OutQueueScreen = ({
   queueAddFriend,
@@ -22,7 +22,7 @@ const OutQueueScreen = ({
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.first}>
-        <Text style={styles.info}>Here you can take a queue for a table</Text>
+        <Text style={styles.info}>Here you can take the queue for a table</Text>
         <Text style={styles.description}>
           Table size depends on the number of people!
         </Text>

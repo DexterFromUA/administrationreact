@@ -5,10 +5,10 @@ import {connect} from 'react-redux';
 
 import {UserHomeScreenInterface} from '../../constants/interfaces/UserHomeScreen';
 import {getNewsAction} from '../../redux/actions/news';
-import Loading from '../../components/Loading';
-import Card from '../../components/Card';
+import Loading from '../../components/ui/Loading';
+import Card from '../../components/ui/Card';
 
-const UserHomeScreen = ({
+const NewsScreen = ({
   navigation,
   news,
   loading,
@@ -72,4 +72,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserHomeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(NewsScreen);

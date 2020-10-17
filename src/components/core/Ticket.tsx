@@ -1,9 +1,9 @@
 import React from 'react';
 import {Dimensions, Text, View, StyleSheet} from 'react-native';
 
-import Card from '../components/Card';
+import Card from '../ui/Card';
 import ModalComponent from './Modal';
-import TableHistory from './TableHistory';
+import TableHistory from '../TableHistory';
 
 const deviceWidth = Dimensions.get('window').width;
 

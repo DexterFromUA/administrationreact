@@ -1,9 +1,9 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, View, ScrollView} from 'react-native';
 
-import Ticket from '../../components/Ticket';
+import Ticket from '../../components/core/Ticket';
 
-const UserSettingScreen = () => {
+const TicketScreen = () => {
   const active = true;
   return (
     <SafeAreaView style={styles.container}>
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserSettingScreen;
+export default TicketScreen;

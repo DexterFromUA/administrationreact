@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView, View, Text, StyleSheet} from 'react-native';
 
-import {InformationScreenInterface} from '../../../constants/interfaces/UserHomeScreen';
+import {InformationScreenInterface} from '../../constants/interfaces/UserHomeScreen';
 
 const InformationScreen = ({route, navigation}: InformationScreenInterface) => {
   const {title, full} = route.params;
