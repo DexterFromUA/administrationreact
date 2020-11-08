@@ -32,11 +32,13 @@ const Login = ({
           <View>
             <WebView
               source={{uri: tempUri}}
-              style={{width: width, height: height}}
-              onLoadStart={(syntheticEvent) => {
-                const {nativeEvent} = syntheticEvent;
-                loginUserCallback(nativeEvent.url);
-              }}
+              style={{flex: 0, width: width, height: height}}
+              startInLoadingState={true}
+              renderLoading={() => <Loading />}
+              // onLoadStart={(syntheticEvent) => {
+              //   const {nativeEvent} = syntheticEvent;
+              //   loginUserCallback(nativeEvent.url);
+              // }}
             />
           </View>
         )}

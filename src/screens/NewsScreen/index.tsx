@@ -24,7 +24,6 @@ const NewsScreen = ({
     </SafeAreaView>
   ) : (
     <>
-      <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
         <ScrollView>
           {news.map((item: any) => (

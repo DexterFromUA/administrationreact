@@ -42,13 +42,13 @@ const userScreens = [
       title: 'Media',
     },
   },
-  {
-    name: 'UserSetting',
-    component: SettingScreen,
-    options: {
-      title: 'Settings',
-    },
-  },
+  // {
+  //   name: 'UserSetting',
+  //   component: SettingScreen,
+  //   options: {
+  //     title: 'Settings',
+  //   },
+  // },
 ];
 
 const adminScreens = [
