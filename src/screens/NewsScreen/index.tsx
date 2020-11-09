@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, ScrollView, StatusBar} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, View} from 'react-native';
 import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
@@ -39,6 +39,7 @@ const NewsScreen = ({
               }
             />
           ))}
+          <View style={styles.empty}></View>
         </ScrollView>
       </SafeAreaView>
     </>
@@ -55,6 +56,9 @@ const styles = StyleSheet.create({
   loading: {
     flex: 1,
     justifyContent: 'center',
+  },
+  empty: {
+    height: 65,
   },
 });
 
