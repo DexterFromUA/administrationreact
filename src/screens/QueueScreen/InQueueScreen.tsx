@@ -5,12 +5,22 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IInQueueScreen} from '../../constants/interfaces/QueueScreen';
 import CardViewer from '../../components/ui/CardViewer';
 import IconButton from '../../components/ui/IconButton';
+import Header from '../../components/ui/Header';
+import ModalComponent from '../../components/core/Modal';
+import SettingScreen from '../SettingScreen';
+import LoadingComponent from '../../components/ui/Loading';
 
 const InQueueScreen = ({friendsInQueue}: IInQueueScreen) => {
   const fullWidth = Dimensions.get('window').width;
+  const [setting, setSetting] = React.useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
+      <Header
+        title="Queue"
+        rightButton={() => setSetting(true)}
+        buttonIcon={<Ionicons name="cog-outline" size={35} color="white" />}
+      />
       <View style={styles.first}>
         <Text style={styles.info}>You are in the line at the moment</Text>
         <Text style={styles.description}>Your line up:</Text>
@@ -41,6 +51,15 @@ const InQueueScreen = ({friendsInQueue}: IInQueueScreen) => {
           }} //TODO: add alert
         />
       </View>
+      <ModalComponent
+        visible={setting}
+        setVisible={() => setSetting(!setting)}
+        component={
+          <React.Suspense fallback={<LoadingComponent />}>
+            <SettingScreen />
+          </React.Suspense>
+        }
+      />
     </SafeAreaView>
   );
 };

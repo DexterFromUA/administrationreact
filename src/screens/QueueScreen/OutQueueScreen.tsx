@@ -6,6 +6,9 @@ import {IOutQueueScreen} from '../../constants/interfaces/QueueScreen';
 import CardViewer from '../../components/ui/CardViewer';
 import IconButton from '../../components/ui/IconButton';
 import ModalComponent from '../../components/core/Modal';
+import Header from '../../components/ui/Header';
+import SettingScreen from '../SettingScreen';
+import LoadingComponent from '../../components/ui/Loading';
 
 const OutQueueScreen = ({
   queueAddFriend,
@@ -15,12 +18,18 @@ const OutQueueScreen = ({
 }: IOutQueueScreen) => {
   const fullWidth = Dimensions.get('window').width;
   const [modalVisible, setVisible] = React.useState(false);
+  const [setting, setSetting] = React.useState(false);
   const leftFriends = friendList.filter(
     (item) => !selectedFriends.some((item2) => item.id === item2.id), //TODO Type check
   );
 
   return (
     <SafeAreaView style={styles.container}>
+      <Header
+        title="Queue"
+        rightButton={() => setSetting(true)}
+        buttonIcon={<Ionicons name="cog-outline" size={35} color="white" />}
+      />
       <View style={styles.first}>
         <Text style={styles.info}>Here you can take the queue for a table</Text>
         <Text style={styles.description}>
@@ -97,6 +106,15 @@ const OutQueueScreen = ({
         selectFromList={queueAddFriend}
         listWithButton
         icon={<Ionicons name="magnet-outline" size={20} />}
+      />
+      <ModalComponent
+        visible={setting}
+        setVisible={() => setSetting(!setting)}
+        component={
+          <React.Suspense fallback={<LoadingComponent />}>
+            <SettingScreen />
+          </React.Suspense>
+        }
       />
     </SafeAreaView>
   );

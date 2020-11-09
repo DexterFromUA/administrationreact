@@ -6,17 +6,26 @@ interface IHeader {
   buttonTitle?: string;
   buttonIcon?: React.ReactElement;
   rightButton?: () => void;
+  containerStyle?: any;
 }
 
 const Header = ({
   title,
   rightButton,
-  buttonTitle = 'button',
+  buttonTitle,
   buttonIcon,
+  containerStyle,
 }: IHeader) => (
-  <View style={styles.container}>
-    <Text style={styles.text}>{title}</Text>
-    {(rightButton || buttonTitle || buttonIcon) && (
+  <View
+    style={
+      buttonTitle || buttonIcon
+        ? [styles.container, containerStyle]
+        : [styles.container, styles.containerAlone, containerStyle]
+    }>
+    <Text style={buttonTitle || buttonIcon ? styles.text : styles.textAlone}>
+      {title}
+    </Text>
+    {(buttonTitle || buttonIcon) && (
       <TouchableOpacity onPress={rightButton}>
         {(buttonIcon && <View style={styles.icon}>{buttonIcon}</View>) || (
           <Text style={styles.buttonTitle}>{buttonTitle}</Text>
@@ -30,8 +39,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     width: 300,
-    marginTop: 60,
-    marginLeft: 60,
     backgroundColor: 'white',
     borderRadius: 50,
     justifyContent: 'space-between',
@@ -47,6 +54,13 @@ const styles = StyleSheet.create({
   text: {
     paddingVertical: 15,
     paddingLeft: 25,
+    fontSize: 25,
+  },
+  containerAlone: {
+    justifyContent: 'center',
+  },
+  textAlone: {
+    paddingVertical: 15,
     fontSize: 25,
   },
   buttonTitle: {

@@ -25,7 +25,7 @@ const NewsScreen = ({
   ) : (
     <>
       <SafeAreaView style={styles.container}>
-        <ScrollView>
+        <ScrollView style={styles.scrollView}>
           {news.map((item: any) => (
             <Card
               key={item.id}
@@ -48,6 +48,9 @@ const NewsScreen = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  scrollView: {
+    paddingTop: 65,
   },
   loading: {
     flex: 1,

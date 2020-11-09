@@ -22,7 +22,7 @@ const NewsRouter = () => {
           name="News"
           component={NewsScreen}
           options={{
-            header: ({scene, previous, navigation}) => {
+            header: ({scene}) => {
               const {options} = scene.descriptor;
               const title =
                 options.headerTitle ?? options.title ?? scene.route.name;
@@ -34,12 +34,24 @@ const NewsRouter = () => {
                   buttonIcon={
                     <Ionicons name="cog-outline" size={35} color="white" />
                   }
+                  containerStyle={{marginLeft: 57, marginTop: 44}}
                 />
               );
             },
+            headerTransparent: true,
           }}
         />
-        <Stack.Screen name="More" component={InformationScreen} />
+        <Stack.Screen
+          name="More"
+          component={InformationScreen}
+          options={{
+            headerBackTitle: 'Done',
+            headerBackImage: () => null,
+            headerBackTitleStyle: {
+              marginLeft: 20,
+            },
+          }}
+        />
       </Stack.Navigator>
       <ModalComponent
         visible={modal}
