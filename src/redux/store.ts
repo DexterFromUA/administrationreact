@@ -7,6 +7,7 @@ const initialState = {
   user: {
     loading: true,
     tempUri: '',
+    codeUri: '',
     username: '',
     id: '',
     access_token: '',

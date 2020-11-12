@@ -6,12 +6,14 @@ import Login from '../components/core/Login';
 import {
   actionLoginUser,
   actionLoginUserWithCallback,
+  actionGetResponseUri,
 } from '../redux/actions/user';
 
 const loginMapStateToProps = (state: Record<string, any>) => {
   return {
     tempUri: state.user.tempUri,
     loading: state.user.loading,
+    codeUri: state.user.codeUri,
   };
 };
 
@@ -20,6 +22,7 @@ const loginMapDispatchToProps = (dispatch: Dispatch) => {
     {
       loginUser: actionLoginUser,
       loginUserCallback: actionLoginUserWithCallback,
+      loginGetResponseUri: actionGetResponseUri,
     },
     dispatch,
   );

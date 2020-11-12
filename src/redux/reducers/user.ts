@@ -1,9 +1,13 @@
 import {createReducer, AnyAction, PayloadAction} from '@reduxjs/toolkit';
 
+import {actionGetResponseUri} from '../actions/user';
 import {LOGIN, LOGIN_WITH_CALLBACK} from '../../constants/actions';
 
 const userReducer = createReducer({} as Record<string, any>, (builder) => {
   builder
+    .addCase(actionGetResponseUri, (state, action) => {
+      state.codeUri = action.payload;
+    })
     .addMatcher(
       (action: AnyAction): action is PayloadAction<{tempUri: string}> =>
         action.type.endsWith(LOGIN + '/fulfilled'),

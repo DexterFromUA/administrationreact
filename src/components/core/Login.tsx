@@ -13,15 +13,25 @@ import {ILoginComponent} from '../../constants/interfaces/LoginComponent';
 
 const Login = ({
   tempUri,
+  codeUri,
   loginUser,
   loginUserCallback,
   loading,
+  loginGetResponseUri,
+  close,
 }: ILoginComponent) => {
   const {width, height} = Dimensions.get('window');
 
   React.useEffect(() => {
-    loginUser();
-  }, [loginUser]);
+    if (codeUri === '') {
+      loginUser();
+    }
+
+    if (codeUri !== '') {
+      loginUserCallback(codeUri);
+      close(false);
+    }
+  }, [loginUser, codeUri]);
 
   return (
     <>
@@ -35,10 +45,15 @@ const Login = ({
               style={{flex: 0, width: width, height: height}}
               startInLoadingState={true}
               renderLoading={() => <Loading />}
-              // onLoadStart={(syntheticEvent) => {
-              //   const {nativeEvent} = syntheticEvent;
-              //   loginUserCallback(nativeEvent.url);
-              // }}
+              onLoadStart={(syntheticEvent) => {
+                const {nativeEvent} = syntheticEvent;
+                if (
+                  nativeEvent.url.indexOf(
+                    'https://about.instagram.com/?code=',
+                  ) + 1
+                )
+                  loginGetResponseUri(nativeEvent.url);
+              }}
             />
           </View>
         )}

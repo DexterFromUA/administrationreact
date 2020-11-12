@@ -18,7 +18,7 @@ const SettingScreen = () => {
       <ModalComponent
         visible={visible}
         setVisible={() => setVisible(!visible)}
-        component={<LoginContainer />}
+        component={<LoginContainer close={setVisible} />}
       />
     </SafeAreaView>
   );
