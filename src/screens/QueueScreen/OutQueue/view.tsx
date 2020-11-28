@@ -1,28 +1,28 @@
 import React from 'react';
-import {SafeAreaView, Text, StyleSheet, View, Dimensions} from 'react-native';
+import {SafeAreaView, View, Text} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {IOutQueueScreen} from '../../constants/interfaces/QueueScreen';
-import CardViewer from '../../components/ui/CardViewer';
-import IconButton from '../../components/ui/IconButton';
-import ModalComponent from '../../components/core/Modal';
-import Header from '../../components/ui/Header';
-import SettingScreen from '../SettingScreen';
-import LoadingComponent from '../../components/ui/Loading';
+import Header from '../../../components/ui/Header';
+import CardViewer from '../../../components/ui/CardViewer';
+import IconButton from '../../../components/ui/IconButton';
+import ModalComponent from '../../../components/core/Modal';
+import LoadingComponent from '../../../components/ui/Loading';
+import SettingScreen from '../../SettingScreen';
 
-const OutQueueScreen = ({
-  queueAddFriend,
-  friendList,
-  queueRemoveFriend,
+import {OutQueueViewInterface} from './types';
+import styles from './styles';
+
+export default ({
+  setting,
+  setSetting,
+  fullWidth,
   selectedFriends,
-}: IOutQueueScreen) => {
-  const fullWidth = Dimensions.get('window').width;
-  const [modalVisible, setVisible] = React.useState(false);
-  const [setting, setSetting] = React.useState(false);
-  const leftFriends = friendList.filter(
-    (item) => !selectedFriends.some((item2) => item.id === item2.id), //TODO Type check
-  );
-
+  queueRemoveFriend,
+  setVisible,
+  modalVisible,
+  leftFriends,
+  queueAddFriend,
+}: OutQueueViewInterface) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header
@@ -119,30 +119,3 @@ const OutQueueScreen = ({
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  info: {
-    paddingTop: 50,
-    fontSize: 18,
-  },
-  element: {
-    flexDirection: 'row',
-  },
-  first: {
-    flex: 9,
-    alignItems: 'center',
-  },
-  second: {
-    flex: 1,
-  },
-  description: {
-    fontSize: 12,
-    paddingVertical: 30,
-  },
-});
-
-export default OutQueueScreen;

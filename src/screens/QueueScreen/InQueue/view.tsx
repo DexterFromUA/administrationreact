@@ -1,19 +1,23 @@
 import React from 'react';
-import {SafeAreaView, Text, StyleSheet, View, Dimensions} from 'react-native';
+import {SafeAreaView, View, Text} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {IInQueueScreen} from '../../constants/interfaces/QueueScreen';
-import CardViewer from '../../components/ui/CardViewer';
-import IconButton from '../../components/ui/IconButton';
-import Header from '../../components/ui/Header';
-import ModalComponent from '../../components/core/Modal';
-import SettingScreen from '../SettingScreen';
-import LoadingComponent from '../../components/ui/Loading';
+import Header from '../../../components/ui/Header';
+import CardViewer from '../../../components/ui/CardViewer';
+import IconButton from '../../../components/ui/IconButton';
+import ModalComponent from '../../../components/core/Modal';
+import LoadingComponent from '../../../components/ui/Loading';
+import SettingScreen from '../../SettingScreen';
 
-const InQueueScreen = ({friendsInQueue}: IInQueueScreen) => {
-  const fullWidth = Dimensions.get('window').width;
-  const [setting, setSetting] = React.useState(false);
+import {InQueueViewInterface} from './types';
+import styles from './styles';
 
+export default ({
+  setSetting,
+  friendsInQueue,
+  setting,
+  fullWidth,
+}: InQueueViewInterface) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header
@@ -63,32 +67,3 @@ const InQueueScreen = ({friendsInQueue}: IInQueueScreen) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  info: {
-    paddingVertical: 40,
-    fontSize: 18,
-  },
-  element: {
-    flexDirection: 'row',
-  },
-  first: {
-    flex: 9,
-    alignItems: 'center',
-  },
-  second: {
-    flex: 1,
-  },
-  description: {
-    alignSelf: 'flex-start',
-    fontSize: 16,
-    paddingBottom: 10,
-    paddingLeft: 15,
-  },
-});
-
-export default InQueueScreen;

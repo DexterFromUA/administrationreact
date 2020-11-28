@@ -1,20 +1,7 @@
 import React from 'react';
-import {SafeAreaView, Text, StyleSheet} from 'react-native';
 
-const MediaScreen = () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text>USER MEDIA SCREEN</Text>
-    </SafeAreaView>
-  );
+import ScreenView from './view';
+
+export default () => {
+  return <ScreenView />;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-export default MediaScreen;

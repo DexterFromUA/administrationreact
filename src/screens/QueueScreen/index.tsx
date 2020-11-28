@@ -1,35 +1,14 @@
 import React from 'react';
-import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
-import {IUserQueueScreen} from '../../constants/interfaces/QueueScreen';
 import {
-  addFriendToQueueAction,
-  changeQueueStatusAction,
-  removeFriendFromQueueAction,
-} from '../../redux/actions/queue';
-import InQueueScreen from './InQueueScreen';
-import OutQueueScreen from './OutQueueScreen';
-
-const QueueScreen = ({
-  queueStatus,
   addFriend,
-  friendList,
+  getFriendsTC,
   removeFriend,
-  selectedFriends,
-  friendsInQueue,
-}: IUserQueueScreen) => {
-  return queueStatus ? (
-    <InQueueScreen friendsInQueue={friendsInQueue} />
-  ) : (
-    <OutQueueScreen
-      friendList={friendList}
-      queueAddFriend={addFriend}
-      queueRemoveFriend={removeFriend}
-      selectedFriends={selectedFriends}
-    />
-  );
-};
+  changeStatus,
+} from '../../redux/reducers/queue';
+
+import ScreenView from './view';
 
 const mapStateToProps = (state: Record<string, any>) => {
   return {
@@ -40,15 +19,35 @@ const mapStateToProps = (state: Record<string, any>) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return bindActionCreators(
-    {
-      addFriend: addFriendToQueueAction,
-      changeQueue: changeQueueStatusAction,
-      removeFriend: removeFriendFromQueueAction,
-    },
-    dispatch,
-  );
-};
+export default connect(mapStateToProps, {
+  addFriend,
+  removeFriend,
+  changeStatus,
+  getFriendsTC,
+})(
+  ({
+    queueStatus,
+    friendList,
+    selectedFriends,
+    friendsInQueue,
+    addFriend,
+    removeFriend,
+    changeStatus,
+  }) => {
+    React.useEffect(() => {
+      console.log('Queue mounted');
+      // getFriendsTC();
+    }, []);
 
-export default connect(mapStateToProps, mapDispatchToProps)(QueueScreen);
+    return (
+      <ScreenView
+        queueStatus={queueStatus}
+        friendList={friendList}
+        selectedFriends={selectedFriends}
+        friendsInQueue={friendsInQueue}
+        addFriend={addFriend}
+        removeFriend={removeFriend}
+      />
+    );
+  },
+);
