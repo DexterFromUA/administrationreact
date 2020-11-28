@@ -1,8 +1,4 @@
-import Firebase from 'firebase';
-import config from './config';
+import {FBAuthFactory} from './auth';
+import {FBDatabaseFactory} from './database';
 
-let firebase;
-
-if (!Firebase.apps.length) firebase = Firebase.initializeApp(config);
-
-export {firebase};
+export {FBDatabaseFactory, FBAuthFactory};
