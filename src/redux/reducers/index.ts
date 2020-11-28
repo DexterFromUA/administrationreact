@@ -1,13 +1,5 @@
-import {combineReducers} from 'redux';
+import news from './news';
+import queue from './queue';
+// import {} from './user';
 
-import userReducer from '../reducers/user';
-import newsReducer from '../reducers/news';
-import queueReducer from '../reducers/queue';
-
-const rootReducer = combineReducers({
-  user: userReducer,
-  news: newsReducer,
-  queue: queueReducer,
-});
-
-export default rootReducer;
+export {news, queue};

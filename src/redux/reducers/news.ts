@@ -1,28 +1,51 @@
-import {createReducer, AnyAction, PayloadAction} from '@reduxjs/toolkit';
+import {AnyAction, Dispatch} from 'redux';
 
-import {GET_NEWS} from '../../constants/actions';
+import {FBDatabaseFactory} from '../../services/firebase';
 
-interface INews {
-  data: Array<{
-    id: number;
-    title: string;
-    description: string;
-    text: string;
-    createdAt: Date;
-    updatedAt: Date;
-  }>;
-  loading: boolean;
-}
+const LOADING = 'NEWS/LOADING';
+const GET_NEWS = 'NEWS/GET_NEWS';
 
-const newsReducer = createReducer({} as INews, (builder) => {
-  builder.addMatcher(
-    (action: AnyAction): action is PayloadAction<{data: any}> =>
-      action.type.endsWith(GET_NEWS + '/fulfilled'),
-    (state, action) => {
-      state.data = action.payload;
-      state.loading = false;
-    },
-  );
+const initialState = {
+  data: [],
+  loading: true,
+};
+
+export default (state = initialState, action: AnyAction) => {
+  switch (action.type) {
+    case GET_NEWS: {
+      return {
+        ...state,
+        data: action.payload,
+      };
+    }
+    case LOADING: {
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    }
+
+    default:
+      return state;
+  }
+};
+
+export const getNews = (news: Record<string, any>[]) => ({
+  type: GET_NEWS,
+  payload: news,
 });
 
-export default newsReducer;
+export const switchLoading = (loading: boolean) => ({
+  type: LOADING,
+  payload: loading,
+});
+
+export const getNewsTC = () => async (
+  dispatch: Dispatch,
+  getState: () => any,
+) => {
+  const news = await FBDatabaseFactory().readNews();
+
+  dispatch(getNews(news));
+  dispatch(switchLoading(!getState().news.loading));
+};
