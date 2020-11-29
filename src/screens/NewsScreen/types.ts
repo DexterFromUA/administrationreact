@@ -9,4 +9,5 @@ export interface NewsScreenInterface {
   news: Record<string, any>[];
   navigation: any;
   getNewsTC: () => void;
+  setSetting: () => void;
 }

@@ -11,6 +11,7 @@ export default ({route}: InformationScreenInterface) => {
   React.useEffect(() => {
     setOptions({
       title: title,
+      headerRight: null,
     });
   }, [title]);
 

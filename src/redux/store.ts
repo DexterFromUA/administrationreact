@@ -2,9 +2,10 @@ import {combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {configureStore} from '@reduxjs/toolkit';
 
-import {news, queue} from './reducers';
+import {app, news, queue} from './reducers';
 
 const reducers = combineReducers({
+  app,
   news,
   queue,
   // user,

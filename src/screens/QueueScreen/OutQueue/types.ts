@@ -1,6 +1,4 @@
 export interface OutQueueViewInterface {
-  setting: boolean;
-  setSetting: (flag: boolean) => void;
   fullWidth: number;
   selectedFriends: Record<string, any>[];
   queueRemoveFriend: (id: number) => void;
@@ -15,4 +13,5 @@ export interface OutQueueInterface {
   selectedFriends: Record<string, any>[];
   queueRemoveFriend: (id: number) => void;
   queueAddFriend: (id: number) => void;
+  setSetting: () => void;
 }

@@ -6,14 +6,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   info: {
-    paddingTop: 50,
+    paddingTop: 30,
     fontSize: 18,
   },
   element: {
     flexDirection: 'row',
   },
   first: {
-    flex: 9,
+    flex: 7,
     alignItems: 'center',
   },
   second: {

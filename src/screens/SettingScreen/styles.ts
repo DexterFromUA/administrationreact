@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -6,8 +6,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {
-    fontSize: 20,
-    paddingVertical: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: Dimensions.get('window').width,
+  },
+  headerText: {
+    fontSize: 30,
+    fontWeight: '300',
   },
   list: {
     alignSelf: 'flex-start',

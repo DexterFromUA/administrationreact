@@ -1,61 +1,114 @@
-import AdminHomeScreen from '../screens/admin/AdminHomeScreen';
-import NewsRouter from './NewsRouter';
-import SettingScreen from '../screens/SettingScreen';
+import React from 'react';
+import {Button} from 'react-native';
+
+import NewsNavigation from './NewsNavigation';
+import QueueNavigation from './QueueNavigation';
+import TicketNavigation from './TicketNavigation';
+
 import MediaScreen from '../screens/MediaScreen';
 import QueueScreen from '../screens/QueueScreen';
 import TableScreen from '../screens/TableScreen';
 import TicketScreen from '../screens/TicketScreen';
+import NewsScreen from '../screens/NewsScreen';
+import InformationScreen from '../screens/NewsScreen/InformationScreen';
 
-const userScreens = [
+const tabRoutes = () => [
   {
-    name: 'UserNews',
-    component: NewsRouter,
+    name: 'News',
+    component: NewsNavigation,
     options: {
       title: 'News',
     },
   },
   {
-    name: 'UserQueue',
-    component: QueueScreen,
+    name: 'Queue',
+    component: QueueNavigation,
     options: {
       title: 'Queue',
     },
   },
   {
-    name: 'UserParty',
+    name: 'Party',
     component: TableScreen,
     options: {
       title: 'Table',
     },
   },
   {
-    name: 'UserTickets',
-    component: TicketScreen,
+    name: 'Tickets',
+    component: TicketNavigation,
     options: {
       title: 'Tickets',
     },
   },
   {
-    name: 'UserMedia',
+    name: 'Media',
     component: MediaScreen,
     options: {
       title: 'Media',
     },
   },
-  // {
-  //   name: 'UserSetting',
-  //   component: SettingScreen,
-  //   options: {
-  //     title: 'Settings',
-  //   },
-  // },
 ];
 
-const adminScreens = [
+const newsRoutes = () => [
   {
-    name: 'AdminHome',
-    component: AdminHomeScreen,
+    name: 'NewsScreen',
+    component: NewsScreen,
+    options: {
+      title: 'News',
+      headerRight: () => {
+        return (
+          <Button title="Settings" onPress={() => console.log('touched')} />
+        );
+      },
+    },
+  },
+  {
+    name: 'InformationScreen',
+    component: InformationScreen,
+    options: {
+      headerBackTitle: 'Done',
+      headerBackImage: () => null,
+      headerBackTitleStyle: {
+        marginLeft: 20,
+      },
+      headerRight: () => {
+        return (
+          <Button title="Settings" onPress={() => console.log('touched')} />
+        );
+      },
+    },
   },
 ];
 
-export {userScreens, adminScreens};
+const queueRoutes = () => [
+  {
+    name: 'QueueScreen',
+    component: QueueScreen,
+    options: {
+      title: 'Queue',
+      headerRight: () => {
+        return (
+          <Button title="Settings" onPress={() => console.log('touched')} />
+        );
+      },
+    },
+  },
+];
+
+const ticketRoutes = () => [
+  {
+    name: 'TicketScreen',
+    component: TicketScreen,
+    options: {
+      title: 'Ticket',
+      headerRight: () => {
+        return (
+          <Button title="Settings" onPress={() => console.log('touched')} />
+        );
+      },
+    },
+  },
+];
+
+export {tabRoutes, newsRoutes, queueRoutes, ticketRoutes};

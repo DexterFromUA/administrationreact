@@ -1,24 +1,37 @@
 import React from 'react';
+import {Button} from 'react-native';
 import {connect} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
 import {getNewsTC} from '../../redux/reducers/news';
+import {setSetting} from '../../redux/reducers/app';
 
 import ScreenView from './view';
 import {NewsScreenInterface} from './types';
 
-const mapStateToProps = (state: Record<string, any>) => {
+const mapStateToProps = ({news}: Record<string, any>) => {
   return {
-    news: state.news.data,
-    loading: state.news.loading,
+    news: news.data,
+    loading: news.loading,
   };
 };
 
 export default connect(mapStateToProps, {
   getNewsTC,
-})(({navigation, news, loading, getNewsTC}: NewsScreenInterface) => {
-  React.useEffect(() => {
-    getNewsTC();
-  }, []);
+  setSetting,
+})(
+  ({navigation, news, loading, getNewsTC, setSetting}: NewsScreenInterface) => {
+    const {setOptions} = useNavigation();
 
-  return <ScreenView loading={loading} news={news} navigation={navigation} />;
-});
+    React.useEffect(() => {
+      getNewsTC();
+      setOptions({
+        headerRight: () => {
+          return <Button title="Settings" onPress={() => setSetting()} />;
+        },
+      });
+    }, []);
+
+    return <ScreenView loading={loading} news={news} navigation={navigation} />;
+  },
+);

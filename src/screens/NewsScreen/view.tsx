@@ -25,7 +25,7 @@ export default ({loading, news, navigation}: NewsScreenViewInterface) => {
                   title={item.title}
                   description={item.description}
                   onClick={() =>
-                    navigation.navigate('More', {
+                    navigation.navigate('InformationScreen', {
                       title: item.title,
                       full: item.text,
                     })
