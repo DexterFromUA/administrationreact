@@ -5,7 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator='iPhone 12 mini'",
-    "device": "react-native run-ios --device 'Dexter/'s iPhone'",
+    "device": "react-native run-ios --udid 03a08afb4195f90e615eacf2784abfffc74fa4da",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
